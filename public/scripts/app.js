@@ -43,6 +43,14 @@ var removeAll = function removeAll() {
   renderTemplate();
 };
 
+var onMakeDecision = function onMakeDecision() {
+  var randomNumber = Math.floor(Math.random() * app.options.length);
+
+  var option = app.options[randomNumber];
+
+  alert(option);
+};
+
 var appRoot = document.getElementById('app');
 var numbers = [55, 101, 10001];
 
@@ -64,9 +72,9 @@ var renderTemplate = function renderTemplate() {
     ) : '',
     options(app.options),
     React.createElement(
-      'p',
-      null,
-      app.options.length
+      'button',
+      { disabled: app.options.length === 0, onClick: onMakeDecision },
+      'What Should I Do?'
     ),
     React.createElement(
       'button',

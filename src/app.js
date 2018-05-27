@@ -32,6 +32,14 @@ const removeAll = () => {
   renderTemplate();
 }
 
+const onMakeDecision = () => {
+  const randomNumber = Math.floor(Math.random( ) * app.options.length);
+
+  const option = app.options[randomNumber];
+
+  alert(option);
+}
+
 const appRoot = document.getElementById('app');
 const numbers = [ 55, 101, 10001 ];
 
@@ -43,8 +51,7 @@ const renderTemplate = () => {
       <h1>{app.title}</h1>
       { app.subtitle ? <p>{ app.subtitle}</p> : ''}
       { options(app.options)  }
-      <p>{ app.options.length }</p>
-
+      <button disabled={ app.options.length === 0 } onClick={onMakeDecision}>What Should I Do?</button>
       <button onClick={removeAll}>Remove all</button>
 
       <ol>
