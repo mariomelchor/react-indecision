@@ -44,6 +44,7 @@ var removeAll = function removeAll() {
 };
 
 var appRoot = document.getElementById('app');
+var numbers = [55, 101, 10001];
 
 var renderTemplate = function renderTemplate() {
 
@@ -71,6 +72,18 @@ var renderTemplate = function renderTemplate() {
       'button',
       { onClick: removeAll },
       'Remove all'
+    ),
+    React.createElement(
+      'ol',
+      null,
+      app.options.map(function (option) {
+        return React.createElement(
+          'li',
+          { key: option },
+          option,
+          ' '
+        );
+      })
     ),
     React.createElement(
       'form',
