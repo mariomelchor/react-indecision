@@ -1,33 +1,38 @@
-let visibility = false
+class VisibilityToggle extends React.Component {
+  constructor(props) {
+    super(props)
 
-const toggleDiv = () => { 
-  visibility = !visibility;
-  RenderToggle();
-}
+    this.state = {
+      visibility: false
+    }
 
-const RenderToggle = () => {
+    this.handleToggleVisibility = this.handleToggleVisibility.bind(this);
+  }
 
-  const renderTemplate = (
-    <div>
-      <h1>Visibility Toggle</h1>
-
-      <button onClick={toggleDiv}>{ visibility ? 'Hide' : 'Show' }</button>
-
-      {
-        visibility && (
-        
-        <div><p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placeratilisis luctus, metus</p></div>
-        
-        )
-
+  handleToggleVisibility() { 
+    this.setState((prevState) => {
+      return {
+        visibility: !prevState.visibility
       }
+    })
 
-    </div>
-  )
+  }
 
-  const appRoot = document.getElementById('app')
-  ReactDOM.render( renderTemplate, appRoot )
-  
+  render(){
+    return (
+      <div>
+        <h1>Visibility Toggle</h1>
+
+        <button onClick={this.handleToggleVisibility}>{ this.state.visibility ? 'Hide' : 'Show'}</button>
+        {
+          this.state.visibility && (
+          <div><p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placeratilisis luctus, metus</p></div>
+          )
+        }
+      </div>
+    )
+  }
+
 }
 
-RenderToggle();
+ReactDOM.render( <VisibilityToggle />, document.getElementById('app') );
